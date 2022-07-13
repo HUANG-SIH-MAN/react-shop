@@ -1,11 +1,8 @@
+import './ProgressControl.scss';
+
 const ProgressControl = () => {
   return (
-    <div
-      className="d-flex justify-content-between m-3"
-      style={{
-        width: 1000,
-      }}
-    >
+    <div className="d-flex justify-content-between m-3 progressControl">
       <button type="button" className="btn btn-outline-secondary">
         ← 上一步
       </button>

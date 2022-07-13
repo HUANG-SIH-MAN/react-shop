@@ -1,6 +1,12 @@
 import './stepProgress.scss';
+import React from 'react';
 
-const StepItem = (props) => {
+type StepItemProps = {
+  step: number,
+  name: string,
+};
+
+const StepItem: React.FC<StepItemProps> = (props) => {
   const { step, name } = props;
   return (
     <div className="d-flex justify-content-start m-3 ">

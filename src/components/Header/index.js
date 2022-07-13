@@ -3,10 +3,10 @@ const itemName = ['男款', '女款', '最新消息', '客製商品', '聯絡我
 const Header = () => {
   return (
     <ul className="nav">
-      {itemName.map((i) => {
+      {itemName.map((item) => {
         return (
-          <li className="nav-item m-3" key={i}>
-            {i}
+          <li className="nav-item m-3" key={item}>
+            {item}
           </li>
         );
       })}
