@@ -10,16 +10,6 @@ import Footer from './Footer';
 
 const App = () => {
   const [step, setStep] = React.useState(1);
-  const [next, setNext] = React.useState('→ 下一步');
-
-  React.useEffect(() => {
-    if (step === 3) {
-      setNext('確認下單');
-    } else {
-      setNext('→ 下一步');
-    }
-  }, [step]);
-
   const downStep = () => {
     if (step > 1) setStep((prev) => prev - 1);
   };
@@ -30,24 +20,15 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <StepProgress nowStep={step} />
+      <StepProgress step={step} />
       {step === 1 && <Step1 />}
       {step === 2 && <Step2 />}
       {step === 3 && <Step3 />}
-      {step !== 1 && (
-        <button
-          type="button"
-          className="btn btn-outline-secondary"
-          onClick={downStep}
-        >
-          ← 上一步
-        </button>
-      )}
-
-      <button type="button" className="btn btn-danger" onClick={upStep}>
-        {next}
-      </button>
-      <ProgressControl />
+      <ProgressControl
+        step={step}
+        onClickNext={upStep}
+        onClickBack={downStep}
+      />
       <Cart />
       <Footer />
     </div>

@@ -11,24 +11,13 @@
   border-radius: 50%
 }
 
-.stepDisable {
-  width: 35px;
-  height: 35px;
+.step[data-step="disable"] {
   border: 2px solid rgb(105, 101, 101);
-  text-align: center;
-  margin-right: 6px;
-  border-radius: 50%
 }
 
-.stepFinish {
-  width: 35px;
-  height: 35px;
-  border: 2px solid rgb(0, 0, 0);
+.step[data-step="finish"] {
   color: rgb(255, 251, 251);
   background-color: black;
-  text-align: center;
-  margin-right: 6px;
-  border-radius: 50%
 }
 
 .line {
