@@ -29,22 +29,26 @@ const StepProgress = (props) => {
         <StepItem
           step={step === 1 ? 1 : '✔'}
           name="寄送地址"
-          stepCss={step !== 1 && 'finish'}
+          stepCss={step === 1 ? '' : 'finish'}
           itemCss=""
         />
         <div className="line" />
         <StepItem
           step={step !== 3 ? 2 : '✔'}
           name="運送方式"
-          stepCss={(step === 1 && 'disable') || (step === 3 && 'finish')}
-          itemCss={step === 1 && 'stepItemDisable'}
+          stepCss={
+            (step === 1 && 'disable') ||
+            (step === 2 && '') ||
+            (step === 3 && 'finish')
+          }
+          itemCss={step === 1 ? 'stepItemDisable' : ''}
         />
         <div className={step === 1 ? 'lineDisable' : 'line'} />
         <StepItem
           step={3}
           name="付款資訊"
-          stepCss={step === 3 && 'disable'}
-          itemCss={step !== 3 && 'stepItemDisable'}
+          stepCss={step === 3 ? '' : 'disable'}
+          itemCss={step === 3 ? '' : 'stepItemDisable'}
         />
       </div>
     </>
