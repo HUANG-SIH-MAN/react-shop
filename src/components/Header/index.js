@@ -1,6 +1,8 @@
+import React from 'react';
+
 const itemName = ['男款', '女款', '最新消息', '客製商品', '聯絡我們'];
 
-const Header = () => {
+const Header = React.memo(() => {
   return (
     <ul className="nav">
       {itemName.map((item) => {
@@ -12,6 +14,6 @@ const Header = () => {
       })}
     </ul>
   );
-};
+});
 
 export default Header;

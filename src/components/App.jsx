@@ -8,6 +8,23 @@ import ProgressControl from './ProgressControl';
 import Cart from './Cart';
 import Footer from './Footer';
 
+const cartItems = [
+  {
+    id: '1',
+    name: '貓咪罐罐',
+    img: 'https://picsum.photos/300/300?text=1',
+    price: 100,
+    quantity: 2,
+  },
+  {
+    id: '2',
+    name: '貓咪干干',
+    img: 'https://picsum.photos/300/300?text=2',
+    price: 200,
+    quantity: 1,
+  },
+];
+
 const App = () => {
   const [step, setStep] = React.useState(1);
   const downStep = () => {
@@ -29,7 +46,7 @@ const App = () => {
         onClickNext={upStep}
         onClickBack={downStep}
       />
-      <Cart />
+      <Cart items={cartItems} />
       <Footer />
     </div>
   );

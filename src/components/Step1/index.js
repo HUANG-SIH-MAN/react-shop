@@ -1,4 +1,6 @@
-import './step1.scss';
+import cx from 'classnames';
+import React from 'react';
+import style from './step1.module.scss';
 
 const cityName = [
   '台北市',
@@ -24,21 +26,21 @@ const cityName = [
   '馬祖縣',
 ];
 
-const Step1 = () => {
+const Step1 = React.memo(() => {
   return (
     <>
       <h5 className="m-3">寄送地址</h5>
       <form>
         <div className="form-group row m-2 mb-4">
           <div className="sex col-4">
-            <div className="label mb-1">稱謂</div>
+            <div className={cx('mb-1', style.label)}>稱謂</div>
             <select className="form-select">
               <option value="0">女士</option>
               <option value="1">先生</option>
             </select>
           </div>
           <div className="name col-7">
-            <div className="label mb-1">姓名</div>
+            <div className={cx('mb-1', style.label)}>姓名</div>
             <input
               className="form-control"
               type="text"
@@ -48,7 +50,7 @@ const Step1 = () => {
         </div>
         <div className="form-group row m-2 mb-4">
           <div className="phone col-6">
-            <div className="label mb-1">電話</div>
+            <div className={cx('mb-1', style.label)}>電話</div>
             <input
               className="form-control"
               type="text"
@@ -56,7 +58,7 @@ const Step1 = () => {
             />
           </div>
           <div className="email col-5">
-            <div className="label mb-1">Email</div>
+            <div className={cx('mb-1', style.label)}>Email</div>
             <input
               className="form-control"
               type="text"
@@ -66,7 +68,7 @@ const Step1 = () => {
         </div>
         <div className="form-group row m-2 mb-4">
           <div className="city col-4">
-            <div className="label mb-1">縣市</div>
+            <div className={cx('mb-1', style.label)}>縣市</div>
             <select className="form-select">
               {cityName.map((city) => {
                 return (
@@ -78,7 +80,7 @@ const Step1 = () => {
             </select>
           </div>
           <div className="address col-7">
-            <div className="label mb-1">地址</div>
+            <div className={cx('mb-1', style.label)}>地址</div>
             <input
               className="form-control"
               type="text"
@@ -89,6 +91,6 @@ const Step1 = () => {
       </form>
     </>
   );
-};
+});
 
 export default Step1;

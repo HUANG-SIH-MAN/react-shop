@@ -1,9 +1,18 @@
-import './ProgressControl.scss';
+import cx from 'classnames';
+import React from 'react';
+import style from './ProgressControl.module.scss';
 
-const ProgressControl = (props) => {
+const ProgressControl = React.memo((props) => {
   const { step, onClickNext, onClickBack } = props;
   return (
-    <div className="d-flex justify-content-between m-3 progressControl">
+    <div
+      className={cx(
+        'd-flex',
+        'justify-content-between',
+        'm-3',
+        style.progressControl,
+      )}
+    >
       {step !== 1 && (
         <button
           type="button"
@@ -19,6 +28,6 @@ const ProgressControl = (props) => {
       </button>
     </div>
   );
-};
+});
 
 export default ProgressControl;

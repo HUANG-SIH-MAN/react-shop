@@ -1,5 +1,5 @@
-import './stepProgress.scss';
 import React from 'react';
+import style from './stepProgress.module.scss';
 
 type StepItemProps = {
   step: number,
@@ -8,19 +8,19 @@ type StepItemProps = {
   itemCss: string,
 };
 
-const StepItem: React.FC<StepItemProps> = (props) => {
+const StepItem: React.FC<StepItemProps> = React.memo((props) => {
   const { step, name, stepCss, itemCss } = props;
   return (
     <div className={`d-flex justify-content-start m-3 ${itemCss}`}>
-      <div className="step" data-step={stepCss}>
+      <div className={style.step} data-step={stepCss}>
         {step}
       </div>
       <div>{name}</div>
     </div>
   );
-};
+});
 
-const StepProgress = (props) => {
+const StepProgress = React.memo((props) => {
   const { step } = props;
   return (
     <>
@@ -32,7 +32,7 @@ const StepProgress = (props) => {
           stepCss={step === 1 ? '' : 'finish'}
           itemCss=""
         />
-        <div className="line" />
+        <div className={style.line} />
         <StepItem
           step={step !== 3 ? 2 : '✔'}
           name="運送方式"
@@ -41,18 +41,18 @@ const StepProgress = (props) => {
             (step === 2 && '') ||
             (step === 3 && 'finish')
           }
-          itemCss={step === 1 ? 'stepItemDisable' : ''}
+          itemCss={step === 1 ? style.stepItemDisable : ''}
         />
-        <div className={step === 1 ? 'lineDisable' : 'line'} />
+        <div className={step === 1 ? style.lineDisable : style.line} />
         <StepItem
           step={3}
           name="付款資訊"
           stepCss={step === 3 ? '' : 'disable'}
-          itemCss={step === 3 ? '' : 'stepItemDisable'}
+          itemCss={step === 3 ? '' : style.stepItemDisable}
         />
       </div>
     </>
   );
-};
+});
 
 export default StepProgress;

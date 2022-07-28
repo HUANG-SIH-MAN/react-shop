@@ -7,7 +7,7 @@ type TransportMethodProps = {
   money: string,
 };
 
-const TransportMethod: React.FC<TransportMethodProps> = (props) => {
+const TransportMethod: React.FC<TransportMethodProps> = React.memo((props) => {
   const { method, day, money } = props;
   return (
     <div className="form-check d-flex justify-content-between m-3 pr-3">
@@ -23,9 +23,9 @@ const TransportMethod: React.FC<TransportMethodProps> = (props) => {
       </div>
     </div>
   );
-};
+});
 
-const Step2 = () => {
+const Step2 = React.memo(() => {
   return (
     <>
       <h5 className="m-3">運送方式</h5>
@@ -33,6 +33,6 @@ const Step2 = () => {
       <TransportMethod method="DHL 貨運" day="48小時內送達" money="$500" />
     </>
   );
-};
+});
 
 export default Step2;

@@ -1,4 +1,6 @@
-const Step3 = () => {
+import React from 'react';
+
+const Step3 = React.memo(() => {
   return (
     <>
       <h5 className="m-3">付款資訊</h5>
@@ -28,6 +30,6 @@ const Step3 = () => {
       </form>
     </>
   );
-};
+});
 
 export default Step3;
