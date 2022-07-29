@@ -13,7 +13,7 @@ const Cart = React.memo((props) => {
           <LineItem
             key={item.id}
             name={item.name}
-            image={item.image}
+            image={item.img}
             initAmount={item.quantity}
             money={item.price}
           />
