@@ -7,6 +7,7 @@ import Step3 from './Step3';
 import ProgressControl from './ProgressControl';
 import Cart from './Cart';
 import Footer from './Footer';
+import { MyContext } from './CartContext';
 
 const cartItems = [
   {
@@ -24,6 +25,8 @@ const cartItems = [
     quantity: 1,
   },
 ];
+
+const providerValue = { cartItems };
 
 const App = () => {
   const [step, setStep] = React.useState(1);
@@ -46,7 +49,9 @@ const App = () => {
         onClickNext={upStep}
         onClickBack={downStep}
       />
-      <Cart items={cartItems} />
+      <MyContext.Provider value={providerValue}>
+        <Cart />
+      </MyContext.Provider>
       <Footer />
     </div>
   );

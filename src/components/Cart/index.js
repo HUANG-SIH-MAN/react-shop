@@ -2,13 +2,14 @@ import cx from 'classnames';
 import React from 'react';
 import LineItem from './LineItem';
 import style from './cart.module.scss';
+import { useMyContext } from '../CartContext';
 
-const Cart = React.memo((props) => {
-  const { items } = props;
+const Cart = React.memo(() => {
+  const { cartItems } = useMyContext();
   return (
     <div className={cx(style.cart, 'm-3')}>
       <h6>購物欄</h6>
-      {items.map((item) => {
+      {cartItems.map((item) => {
         return (
           <LineItem
             key={item.id}
