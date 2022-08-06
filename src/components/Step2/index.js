@@ -1,6 +1,6 @@
 import './step2.scss';
 import React from 'react';
-import { useMyContext } from '../CartContext';
+import { useCartContext } from '../CartContext';
 
 type TransportMethodProps = {
   method: string,
@@ -11,7 +11,7 @@ type TransportMethodProps = {
 
 const TransportMethod: React.FC<TransportMethodProps> = React.memo((props) => {
   const { method, day, money, state, onSelect } = props;
-  const { setFare } = useMyContext();
+  const { setFare } = useCartContext();
   const atRadioChange = (e) => {
     onSelect(e.target.value);
     setFare(money);
@@ -38,7 +38,7 @@ const TransportMethod: React.FC<TransportMethodProps> = React.memo((props) => {
 });
 
 const Step2 = React.memo(() => {
-  const { fareState, setFareState } = useMyContext();
+  const { fareState, setFareState } = useCartContext();
   return (
     <>
       <h5 className="m-3">運送方式</h5>

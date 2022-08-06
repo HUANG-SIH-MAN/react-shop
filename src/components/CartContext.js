@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-export const MyContext = React.createContext(null);
+export const CartContext = React.createContext(null);
 
-export function useMyContext() {
-  const ctx = useContext(MyContext);
+export function useCartContext() {
+  const ctx = useContext(CartContext);
   if (ctx == null) {
     throw new Error('useMyContext must be used inside a ContextProvider.');
   }

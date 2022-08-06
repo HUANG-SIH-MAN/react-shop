@@ -2,7 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 import style from './cart.module.scss';
-import { useMyContext } from '../CartContext';
+import { useCartContext } from '../CartContext';
 
 type LineItemProps = {
   name: string,
@@ -14,7 +14,7 @@ type LineItemProps = {
 const LineItem: React.FC<LineItemProps> = React.memo((props) => {
   const { name, image, initAmount, money } = props;
   const [amount, setAmount] = React.useState(initAmount);
-  const { setTotal } = useMyContext();
+  const { setTotal } = useCartContext();
 
   const addAmount = () => {
     setAmount(amount + 1);

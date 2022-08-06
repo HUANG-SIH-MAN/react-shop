@@ -2,10 +2,10 @@ import cx from 'classnames';
 import React from 'react';
 import LineItem from './LineItem';
 import style from './cart.module.scss';
-import { useMyContext } from '../CartContext';
+import { useCartContext } from '../CartContext';
 
 const Cart = React.memo(() => {
-  const { cartItems, total, step, fare } = useMyContext();
+  const { cartItems, total, step, fare } = useCartContext();
   return (
     <div className={cx(style.cart, 'm-3')}>
       <h6>購物欄</h6>

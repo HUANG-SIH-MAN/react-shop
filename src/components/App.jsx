@@ -8,7 +8,7 @@ import Step3 from './Step3';
 import ProgressControl from './ProgressControl';
 import Cart from './Cart';
 import Footer from './Footer';
-import { MyContext } from './CartContext';
+import { CartContext } from './CartContext';
 
 const cartItems = [
   {
@@ -58,18 +58,18 @@ const App = () => {
       <Header />
       <StepProgress step={step} />
       {step === 1 && <Step1 />}
-      <MyContext.Provider value={providerValue}>
+      <CartContext.Provider value={providerValue}>
         {step === 2 && <Step2 />}
-      </MyContext.Provider>
+      </CartContext.Provider>
       {step === 3 && <Step3 />}
       <ProgressControl
         step={step}
         onClickNext={upStep}
         onClickBack={downStep}
       />
-      <MyContext.Provider value={providerValue}>
+      <CartContext.Provider value={providerValue}>
         <Cart />
-      </MyContext.Provider>
+      </CartContext.Provider>
       <Footer />
     </div>
   );
