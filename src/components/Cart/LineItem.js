@@ -2,6 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 import style from './cart.module.scss';
+import { useMyContext } from '../CartContext';
 
 type LineItemProps = {
   name: string,
@@ -13,13 +14,18 @@ type LineItemProps = {
 const LineItem: React.FC<LineItemProps> = React.memo((props) => {
   const { name, image, initAmount, money } = props;
   const [amount, setAmount] = React.useState(initAmount);
+  const { setTotal } = useMyContext();
 
   const addAmount = () => {
     setAmount(amount + 1);
+    setTotal((prve) => prve + money);
   };
 
   const reduceAmount = () => {
-    if (amount > 0) setAmount(amount - 1);
+    if (amount > 0) {
+      setAmount(amount - 1);
+      setTotal((prve) => prve - money);
+    }
   };
   return (
     <div className="m-3 d-flex justify-content-between">
@@ -43,7 +49,7 @@ const LineItem: React.FC<LineItemProps> = React.memo((props) => {
         </div>
       </div>
 
-      <div className="ml-3 mt-3">{money}</div>
+      <div className="ml-3 mt-3">{money * amount}</div>
     </div>
   );
 });

@@ -5,10 +5,11 @@ import style from './cart.module.scss';
 import { useMyContext } from '../CartContext';
 
 const Cart = React.memo(() => {
-  const { cartItems } = useMyContext();
+  const { cartItems, total, step, fare } = useMyContext();
   return (
     <div className={cx(style.cart, 'm-3')}>
       <h6>購物欄</h6>
+      <h6>目前購物進度：第{step}步</h6>
       {cartItems.map((item) => {
         return (
           <LineItem
@@ -23,12 +24,12 @@ const Cart = React.memo(() => {
       <hr />
       <div className="d-flex justify-content-between">
         <p>運費</p>
-        <p>1000</p>
+        <p>{fare || '免費'}</p>
       </div>
       <hr />
       <div className="d-flex justify-content-between">
         <p>小計</p>
-        <p>1000</p>
+        <p>{total + fare}</p>
       </div>
     </div>
   );

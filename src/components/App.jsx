@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import Header from './Header';
 import StepProgress from './StepProgress';
@@ -26,10 +27,25 @@ const cartItems = [
   },
 ];
 
-const providerValue = { cartItems };
-
 const App = () => {
+  const initMoney = cartItems
+    .map((item) => item.price * item.quantity)
+    .reduce((a, b) => a + b);
   const [step, setStep] = React.useState(1);
+  const [total, setTotal] = React.useState(initMoney);
+  const [fare, setFare] = React.useState(0);
+  const [fareState, setFareState] = React.useState('標準運送');
+  const providerValue = {
+    cartItems,
+    total,
+    setTotal,
+    step,
+    fare,
+    setFare,
+    fareState,
+    setFareState,
+  };
+
   const downStep = () => {
     if (step > 1) setStep((prev) => prev - 1);
   };
@@ -42,7 +58,9 @@ const App = () => {
       <Header />
       <StepProgress step={step} />
       {step === 1 && <Step1 />}
-      {step === 2 && <Step2 />}
+      <MyContext.Provider value={providerValue}>
+        {step === 2 && <Step2 />}
+      </MyContext.Provider>
       {step === 3 && <Step3 />}
       <ProgressControl
         step={step}
