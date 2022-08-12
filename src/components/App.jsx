@@ -9,6 +9,12 @@ import ProgressControl from './ProgressControl';
 import Cart from './Cart';
 import Footer from './Footer';
 import { CartContext } from './CartContext';
+import useShoppingCart from '../hooks/useShoppingCart';
+import {
+  actionUpdateMoney,
+  actionSetInitMoney,
+  actionSetFare,
+} from '../hooks/actions';
 
 const cartItems = [
   {
@@ -28,22 +34,45 @@ const cartItems = [
 ];
 
 const App = () => {
-  const initMoney = cartItems
-    .map((item) => item.price * item.quantity)
-    .reduce((a, b) => a + b);
+  const [state, dispatch] = useShoppingCart();
+  const atUpdateMoney = React.useCallback(
+    (money) => {
+      dispatch(actionUpdateMoney(money));
+    },
+    [dispatch],
+  );
+
+  const atSetInitMoney = React.useCallback(
+    (initMoney) => {
+      dispatch(actionSetInitMoney(initMoney));
+    },
+    [dispatch],
+  );
+
+  const atSetFare = React.useCallback(
+    (fare, fareState) => {
+      dispatch(actionSetFare(fare, fareState));
+    },
+    [dispatch],
+  );
+
+  React.useEffect(() => {
+    const initMoney = cartItems
+      .map((item) => item.price * item.quantity)
+      .reduce((a, b) => a + b);
+    atSetInitMoney(initMoney);
+    return () => {
+      atSetInitMoney(0);
+    };
+  }, [atSetInitMoney]);
+
   const [step, setStep] = React.useState(1);
-  const [total, setTotal] = React.useState(initMoney);
-  const [fare, setFare] = React.useState(0);
-  const [fareState, setFareState] = React.useState('標準運送');
   const providerValue = {
     cartItems,
-    total,
-    setTotal,
     step,
-    fare,
-    setFare,
-    fareState,
-    setFareState,
+    state,
+    onUpdateMoney: atUpdateMoney,
+    onSetFare: atSetFare,
   };
 
   const downStep = () => {
@@ -56,18 +85,16 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <StepProgress step={step} />
-      {step === 1 && <Step1 />}
       <CartContext.Provider value={providerValue}>
+        <StepProgress step={step} />
+        {step === 1 && <Step1 />}
         {step === 2 && <Step2 />}
-      </CartContext.Provider>
-      {step === 3 && <Step3 />}
-      <ProgressControl
-        step={step}
-        onClickNext={upStep}
-        onClickBack={downStep}
-      />
-      <CartContext.Provider value={providerValue}>
+        {step === 3 && <Step3 />}
+        <ProgressControl
+          step={step}
+          onClickNext={upStep}
+          onClickBack={downStep}
+        />
         <Cart />
       </CartContext.Provider>
       <Footer />

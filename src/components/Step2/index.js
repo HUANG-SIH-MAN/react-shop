@@ -10,11 +10,10 @@ type TransportMethodProps = {
 };
 
 const TransportMethod: React.FC<TransportMethodProps> = React.memo((props) => {
-  const { method, day, money, state, onSelect } = props;
-  const { setFare } = useCartContext();
+  const { method, day, money, state } = props;
+  const { onSetFare } = useCartContext();
   const atRadioChange = (e) => {
-    onSelect(e.target.value);
-    setFare(money);
+    onSetFare(money, e.target.value);
   };
   return (
     <div className="form-check d-flex justify-content-between m-3 pr-3">
@@ -38,7 +37,7 @@ const TransportMethod: React.FC<TransportMethodProps> = React.memo((props) => {
 });
 
 const Step2 = React.memo(() => {
-  const { fareState, setFareState } = useCartContext();
+  const { state } = useCartContext();
   return (
     <>
       <h5 className="m-3">運送方式</h5>
@@ -46,15 +45,13 @@ const Step2 = React.memo(() => {
         method="標準運送"
         day="約3~7個工作天"
         money={0}
-        state={fareState}
-        onSelect={setFareState}
+        state={state.fareState}
       />
       <TransportMethod
         method="DHL 貨運"
         day="48小時內送達"
         money={500}
-        state={fareState}
-        onSelect={setFareState}
+        state={state.fareState}
       />
     </>
   );

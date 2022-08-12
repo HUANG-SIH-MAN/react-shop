@@ -14,17 +14,17 @@ type LineItemProps = {
 const LineItem: React.FC<LineItemProps> = React.memo((props) => {
   const { name, image, initAmount, money } = props;
   const [amount, setAmount] = React.useState(initAmount);
-  const { setTotal } = useCartContext();
+  const { onUpdateMoney } = useCartContext();
 
   const addAmount = () => {
     setAmount(amount + 1);
-    setTotal((prve) => prve + money);
+    onUpdateMoney(money);
   };
 
   const reduceAmount = () => {
     if (amount > 0) {
       setAmount(amount - 1);
-      setTotal((prve) => prve - money);
+      onUpdateMoney(-money);
     }
   };
   return (
